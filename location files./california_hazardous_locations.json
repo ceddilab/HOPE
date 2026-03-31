@@ -1,0 +1,102 @@
+[
+  {
+    "name":"Wildfire Zone - Napa",
+    "latitude":38.2975,
+    "longitude":-122.2869
+  },
+  {
+    "name":"Earthquake Risk - San Andreas",
+    "latitude":36.5761,
+    "longitude":-121.2511
+  },
+  {
+    "name":"Flood Zone - Sacramento",
+    "latitude":38.5816,
+    "longitude":-121.4944
+  },
+  {
+    "name":"Mudslide Area - Malibu",
+    "latitude":34.0259,
+    "longitude":-118.7798
+  },
+  {
+    "name":"Industrial Spill - Richmond",
+    "latitude":37.9358,
+    "longitude":-122.3478
+  },
+  {
+    "name":"Radiation Leak - San Onofre",
+    "latitude":33.3687,
+    "longitude":-117.5554
+  },
+  {
+    "name":"Tsunami Risk - Crescent City",
+    "latitude":41.7558,
+    "longitude":-124.2017
+  },
+  {
+    "name":"Chemical Zone - Martinez",
+    "latitude":38.0194,
+    "longitude":-122.1341
+  },
+  {
+    "name":"Heatwave Alert - Palm Springs",
+    "latitude":33.8303,
+    "longitude":-116.5453
+  },
+  {
+    "name":"Drought Zone - Fresno",
+    "latitude":36.7378,
+    "longitude":-119.7871
+  },
+  {
+    "name":"Sinkhole Area - Fontana",
+    "latitude":34.0922,
+    "longitude":-117.435
+  },
+  {
+    "name":"Earthquake Alert - Ridgecrest",
+    "latitude":35.6225,
+    "longitude":-117.6709
+  },
+  {
+    "name":"Flood Zone - Stockton",
+    "latitude":37.9577,
+    "longitude":-121.2908
+  },
+  {
+    "name":"Industrial Fire - Carson",
+    "latitude":33.8314,
+    "longitude":-118.282
+  },
+  {
+    "name":"Radiation Risk - Livermore Lab",
+    "latitude":37.6819,
+    "longitude":-121.768
+  },
+  {
+    "name":"Wildfire Alert - Redding",
+    "latitude":40.5865,
+    "longitude":-122.3917
+  },
+  {
+    "name":"Chemical Leak - Torrance",
+    "latitude":33.8358,
+    "longitude":-118.3406
+  },
+  {
+    "name":"Tsunami Watch - Eureka",
+    "latitude":40.8021,
+    "longitude":-124.1637
+  },
+  {
+    "name":"Heat Stress - Bakersfield",
+    "latitude":35.3733,
+    "longitude":-119.0187
+  },
+  {
+    "name":"Landslide Zone - Big Sur",
+    "latitude":36.2704,
+    "longitude":-121.8081
+  }
+]

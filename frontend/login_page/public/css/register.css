@@ -1,0 +1,192 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('/img/coverimg.webp') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding-top: 80px;
+}
+
+.register-container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  color: #ffffff;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: fadeInSlide 0.8s ease-in-out;
+  overflow: hidden;
+}
+
+
+
+.register-container h2 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-bottom: 1.8rem;
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+  line-height: 1.4;
+}
+
+
+
+.register-form input {
+  width: 100%;
+  padding: 14px 18px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 1rem;
+  display: block;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.register-form input::placeholder {
+  color: #ccc;
+}
+
+
+
+.register-form button.btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, #28a745, #218838);
+  color: white;
+  font-weight: bold;
+  font-size: 1.05rem;
+  border-radius: 12px;
+  border: none;
+  margin-top: 18px;
+  box-shadow: 0 4px 14px rgba(40, 167, 69, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+.register-form button.btn:hover {
+  background: linear-gradient(to right, #218838, #1e7e34);
+  transform: scale(1.01);
+}
+
+
+
+.extra-link {
+  margin-top: 15px;
+  font-size: 0.95rem;
+}
+
+.extra-link a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+.navbar {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 2px;
+  width: 0%;
+  background-color: #00bfff;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: #00bfff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+}
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}

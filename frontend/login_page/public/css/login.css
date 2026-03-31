@@ -1,0 +1,225 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ----------------- General Reset & Background ----------------- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('/img/coverimg.webp') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  margin: 0;
+}
+
+
+.overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding-top: 100px;
+}
+
+/* ----------------- Login Container ----------------- */
+.login-container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  color: #ffffff;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: fadeInSlide 0.8s ease-in-out;
+  overflow: hidden; /* ensures content doesn’t spill */
+}
+
+
+
+.login-container h2 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  margin-bottom: 1.8rem;
+  text-shadow: 1px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ----------------- Form Styling ----------------- */
+.login-form input {
+  width: 100%;
+  padding: 14px 18px;
+  margin: 12px 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 1rem;
+  display: block;
+}
+
+.login-form input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  outline: none;
+}
+
+.login-form input::placeholder {
+  color: #ccc;
+}
+
+.login-form button.btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, #00bfff, #0077cc);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  margin-top: 18px;
+  box-shadow: 0 4px 14px rgba(0, 191, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.login-form button.btn:hover {
+  background: linear-gradient(to right, #0077cc, #005fa3);
+  transform: scale(1.01);
+}
+
+/* ----------------- Extra Link ----------------- */
+.extra-link {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.extra-link a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+.extra-link a:hover {
+  color: white;
+}
+
+/* ----------------- Navbar ----------------- */
+.navbar {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 2px;
+  width: 0%;
+  background-color: #00bfff;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: #00bfff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+}
+
+/* ----------------- Hamburger Menu ----------------- */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 2rem 1.5rem;
+    }
+  
+    .login-form input,
+    .login-form button.btn {
+      font-size: 0.95rem;
+    }
+  }
+  
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+/* ----------------- Animation ----------------- */
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

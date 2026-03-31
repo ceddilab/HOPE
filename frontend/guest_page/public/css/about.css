@@ -1,0 +1,224 @@
+
+/* ===== Background & Typography ===== */
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('/img/aboutus.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* ===== Hero Section ===== */
+  .hero {
+    text-align: center;
+    padding: 6rem 2rem 3rem;
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.7);
+  }
+  
+  .hero p {
+    font-size: 1.3rem;
+    color: #dddddd;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* ===== Section Animation ===== */
+  section {
+    padding: 4.5rem 2rem;
+    max-width: 980px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  
+  section:last-of-type {
+    border-bottom: none;
+  }
+  
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* ===== Content Boxes ===== */
+  .content-box {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2.8rem 2.2rem;
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    color: #f3f3f3;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .content-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+  }
+  
+  .content-box h2 {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+  }
+  
+  .content-box p,
+  .content-box ul {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #e2e2e2;
+  }
+  
+  .content-box ul {
+    padding-left: 1.7rem;
+    list-style-type: disc;
+    margin-top: 1rem;
+  }
+  
+  /* ===== Team Grid Section ===== */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .team-member {
+    background-color: rgba(255, 255, 255, 0.12);
+    padding: 1.8rem;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-6px);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  }
+  
+  .team-member h4 {
+    margin-top: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .team-member p {
+    font-size: 1rem;
+    color: #dddddd;
+  }
+  
+  /* ===== Footer ===== */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-top: 3rem;
+  }
+  
+  /* ===== Navbar ===== */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .brand {
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.6rem;
+  }
+  
+  .nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #ffd369;
+    transform: translateY(-2px);
+  }
+  
+  /* ===== Mobile Responsive ===== */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+  
+    .hero p {
+      font-size: 1rem;
+    }
+  
+    .content-box {
+      padding: 2rem 1.2rem;
+    }
+  
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .nav-links {
+      gap: 1rem;
+    }
+  
+    .brand {
+      font-size: 1.6rem;
+    }
+  
+    .nav-links a {
+      font-size: 0.95rem;
+    }
+  }
+
+  #map {
+    width: 100%;
+    height: 420px;
+    margin-top: 1rem;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+  }
+  

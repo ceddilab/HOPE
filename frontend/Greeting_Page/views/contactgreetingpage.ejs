@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - D.D.C.A</title>
+  <link rel="stylesheet" href="/css/about.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <%- include('partials/navbar') %>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Contact Us</h1>
+      <p>We'd love to hear from you. Reach out to our team anytime.</p>
+    </div>
+  </header>
+
+  <!-- Contact Info Section -->
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>📬 Reach Out</h2>
+      <p>If you have questions about our project, want to collaborate, or just want to say hi — here's how you can get in touch:</p>
+      <ul>
+        <li><strong>Email:</strong> hope-support@gmail.com</li>
+        <li><strong>Phone:</strong> +1 (800) 555-hope</li>
+        <li><strong>Address:</strong> xxxxxx xxx xxxxx xxxxxxxx, CSU Fullerton, CA</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Feedback Form -->
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>📝 Send Us a Message</h2>
+      <form>
+        <label for="name">Name:</label><br />
+        <input type="text" id="name" name="name" required><br /><br />
+
+        <label for="email">Email:</label><br />
+        <input type="email" id="email" name="email" required><br /><br />
+
+        <label for="message">Message:</label><br />
+        <textarea id="message" name="message" rows="5" required></textarea><br /><br />
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 D.D.C.A All rights reserved.</p>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('.scroll-section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>

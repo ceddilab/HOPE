@@ -1,0 +1,102 @@
+[
+  {
+    "name":"Flood Zone - Lagos",
+    "latitude":6.5244,
+    "longitude":3.3792
+  },
+  {
+    "name":"Drought Zone - Asmara",
+    "latitude":15.3229,
+    "longitude":38.9251
+  },
+  {
+    "name":"Conflict Zone - Mogadishu",
+    "latitude":2.0469,
+    "longitude":45.3182
+  },
+  {
+    "name":"Cholera Outbreak - Harare",
+    "latitude":-17.8252,
+    "longitude":31.0335
+  },
+  {
+    "name":"Malaria Alert - Kisumu",
+    "latitude":-0.0917,
+    "longitude":34.7679
+  },
+  {
+    "name":"Desertification - Agadez",
+    "latitude":16.9737,
+    "longitude":7.9914
+  },
+  {
+    "name":"Volcano Risk - Goma",
+    "latitude":-1.6585,
+    "longitude":29.22
+  },
+  {
+    "name":"Flood Risk - Accra",
+    "latitude":5.6037,
+    "longitude":-0.187
+  },
+  {
+    "name":"Cyclone Risk - Beira",
+    "latitude":-19.8333,
+    "longitude":34.85
+  },
+  {
+    "name":"Heatwave - Khartoum",
+    "latitude":15.5007,
+    "longitude":32.5599
+  },
+  {
+    "name":"Landslide Zone - Freetown",
+    "latitude":8.4844,
+    "longitude":-13.2344
+  },
+  {
+    "name":"Conflict Alert - Juba",
+    "latitude":4.8594,
+    "longitude":31.5713
+  },
+  {
+    "name":"Disease Alert - Monrovia",
+    "latitude":6.2907,
+    "longitude":-10.7605
+  },
+  {
+    "name":"Flood Zone - Dar es Salaam",
+    "latitude":-6.7924,
+    "longitude":39.2083
+  },
+  {
+    "name":"Tsunami Risk - Moroni",
+    "latitude":-11.6986,
+    "longitude":43.2436
+  },
+  {
+    "name":"Cholera Risk - Kinshasa",
+    "latitude":-4.4419,
+    "longitude":15.2663
+  },
+  {
+    "name":"Fire Risk - Cape Town",
+    "latitude":-33.9249,
+    "longitude":18.4241
+  },
+  {
+    "name":"Desertification - Nouakchott",
+    "latitude":18.0735,
+    "longitude":-15.9582
+  },
+  {
+    "name":"Flood Risk - Bamako",
+    "latitude":12.6392,
+    "longitude":-8.0029
+  },
+  {
+    "name":"Disease Zone - N'Djamena",
+    "latitude":12.1348,
+    "longitude":15.0557
+  }
+]

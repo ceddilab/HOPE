@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greeting Page</title>
+  <link rel="stylesheet" href="/css/greeting.css" />
+</head>
+<body>
+  <!-- ✅ Navbar stays on top -->
+  <%- include('partials/navbar') %>
+
+  <!-- ✅ Centered content -->
+  <div class="overlay">
+    <div class="container">
+      <h1>Hello from D.D.C.A Greeting Page!</h1>
+      <p>Humanitarian Operations for People in Emergencies</p>
+
+      <div class="button-container">
+        <a href="/login" class="btn">Login</a>
+        <a href="/guest" class="btn-outline">Continue as Guest</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Hamburger toggle -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>

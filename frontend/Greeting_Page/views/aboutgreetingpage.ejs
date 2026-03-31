@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - D.D.C.A</title>
+  
+  <link rel="stylesheet" href="/css/about_greetingpage.css" />
+
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="brand">H.O.P.E</div>
+      <div class="nav-links">
+        <a href="/home">Home</a>
+        <a href="/AboutUs">About Us</a>
+        <a href="/contact">Contact Us</a>
+        
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Empowering Emergency Response Through AI</h1>
+      <p>Machine Learning Models & Optimization Algorithms for Disaster Management</p>
+    </div>
+  </header>
+
+  <!-- Existing Sections -->
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>🎯 Our Mission</h2>
+      <p>
+        To reduce disaster-related casualties and improve public health outcomes through intelligent technology solutions that ensure timely, efficient, and data-driven emergency response.
+      </p>
+    </div>
+  </section>
+
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>🔭 Our Vision</h2>
+      <p>
+        To build globally applicable tools that empower disaster relief agencies and governments with the foresight and infrastructure required to protect communities, especially in under-resourced settings.
+      </p>
+    </div>
+  </section>
+
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>💼 What We Do</h2>
+      <ul>
+        <li>🚚 Intelligent depot location using K-Means++ and DDCA</li>
+        <li>🧭 Real-time routing for emergency logistics</li>
+        <li>📊 Resource-aware optimization for unpredictable scenarios</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>🛠️ Technology Stack</h2>
+      <p>
+        OR-Tools, Python, Leaflet, AWS CloudLab, clustering algorithms, dynamic route optimization, and geolocation services.
+      </p>
+    </div>
+  </section>
+
+  <!-- Meet the Team -->
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>👥 Meet the Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <h4>Prof. Akwafuo Sampson</h4>
+          <p>Assistant Professor
+            Ph.D., University of North Texas, Texas
+          </p>
+        </div>
+        <div class="team-member">
+          <h4>Asad Abdul</h4>
+          <p>Research Assistant
+           CALIFORNIA STATE University Fullerton</p>
+        </div>
+        <div class="team-member">
+          <h4>Anthony Sturrus</h4>
+          <p>Research Assistant
+            CALIFORNIA STATE University Fullerton</p>
+        </div>
+        <div class="team-member">
+          <h4>Public Health Collaborators</h4>
+          <p>NCDC, NEMA, CALIFORNIA State University</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scroll-section">
+    <div class="content-box" style="text-align: center;">
+      <h2>🚀 Looking Ahead</h2>
+      <p>
+        We’re not just building systems — we’re building resilience.  
+        Join us in shaping a safer, smarter future in emergency management.
+      </p>
+    </div>
+  </section>
+
+  <!-- 🔍 Project Description Sections -->
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>📌 Problem Statement</h2>
+      <p>
+        In emergency situations like pandemics, floods, or natural disasters, the need for rapid response and efficient resource allocation is critical. Current systems often fail due to unpredictable demand, inaccessible areas, and delayed logistics. This project addresses the urgent need for intelligent models that ensure fast and resource-aware emergency relief.
+      </p>
+    </div>
+  </section>
+
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>🧪 Research Methodology</h2>
+      <p>
+        Our methodology combines advanced clustering and optimization techniques to improve disaster response operations. We propose an enhancement to K-Means++ and introduce a novel Dual-Determinant Clustering Algorithm (DDCA) for more accurate depot location planning. These models are tested using real-world constraints such as vehicle capacity, road accessibility, and supply-demand uncertainty.
+      </p>
+    </div>
+  </section>
+
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>🤝 Collaborators & Institutions</h2>
+      <p>
+        This project is a cross-disciplinary initiative led by CSU Fullerton’s Department of Computer Science in collaboration with:
+      </p>
+      <ul>
+        <li>Georgia State University</li>
+        <li>National Center for Disease Control (NCDC)</li>
+        <li>National Emergency Management Agency (NEMA)</li>
+        <li>Public Health and Logistics Experts</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="scroll-section">
+    <div class="content-box">
+      <h2>📈 Expected Impact</h2>
+      <p>
+        The expected outcome is a suite of tools and models capable of reducing emergency response time, improving depot placement accuracy, and enhancing collaboration among relief organizations. This project will also serve as a foundational learning and research platform for both undergraduate and graduate students.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 H.O.P.E All rights reserved.</p>
+  </footer>
+
+  <!-- Scroll animation -->
+  <script>
+    const sections = document.querySelectorAll('.scroll-section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>

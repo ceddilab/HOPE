@@ -1,0 +1,218 @@
+/* ----------------- General Reset ----------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url('/img/greetingpage.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* ----------------- Navbar ----------------- */
+/* ----------------- Navbar ----------------- */
+.navbar {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  height: 2px;
+  width: 0%;
+  background-color: #00bfff;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: #00bfff;
+  text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+}
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: white;
+}
+
+
+/* ----------------- Responsive Navbar ----------------- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    color: white;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px #00bfff; }
+  50% { text-shadow: 0 0 15px #00bfff; }
+  100% { text-shadow: 0 0 5px #00bfff; }
+}
+
+.brand {
+  animation: glow 3s infinite;
+}
+
+/* ----------------- Overlay ----------------- */
+.overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 80px; /* pushes content below navbar */
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ----------------- Container ----------------- */
+.container {
+  max-width: 600px;
+  padding: 40px 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05); /* ultra-transparent */
+  backdrop-filter: blur(12px); /* glass blur */
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  color: #ffffff;
+  animation: fadeIn 0.8s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* glass border effect */
+}
+
+/* ----------------- Typography ----------------- */
+h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #ffffff;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+p {
+  font-size: 1.1rem;
+  color: #e0e0e0;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* ----------------- Buttons ----------------- */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn,
+.btn-outline {
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  text-align: center;
+  animation: fadeIn 1.2s ease-in;
+}
+
+.btn {
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 119, 204, 0.3);
+}
+
+.btn:hover {
+  background-color: #005fa3;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* ----------------- Animation ----------------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

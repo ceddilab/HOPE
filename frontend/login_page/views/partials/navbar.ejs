@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="brand">H.O.P.E</div>
+    <div class="nav-links">
+      <a href="/home">Home</a>
+      <% if (!user) { %> <!-- if user not logged in -->
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      <% } else { %> <!-- if user logged in -->
+        <a href="/profile">Profile</a>
+        <a href="/logout">Logout</a>
+      <% } %>
+    </div>
+  </div>
+</nav>

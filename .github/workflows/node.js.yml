@@ -1,0 +1,50 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [23.x]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # Frontend setup and install
+    - name: Setup Node.js for Frontend
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies for Frontend
+      run: npm ci
+      working-directory: frontend
+
+    - name: Run Frontend App in Background
+      run: node app.js &
+      working-directory: frontend
+
+    # Backend setup and install
+    - name: Setup Node.js for Backend
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies for Backend
+      run: npm ci
+      working-directory: backend
+
+    - name: Run Backend App in Background
+      run: node index.js &
+      working-directory: backend
+
+    # Optionally, wait for the processes to complete (e.g., run tests or other commands)
+    - name: Wait for both apps to run
+      run: sleep 30  # Adjust the sleep time as needed
