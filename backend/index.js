@@ -26,6 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // ✅ Routes
+app.get("/", (req, res) => {
+  res.send("Welcome to the HOPE backend API!");
+});
 app.use("/api/upload", uploadRoute);
 app.use("/api/auth", authRoutes);
 
