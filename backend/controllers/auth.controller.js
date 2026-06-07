@@ -30,11 +30,14 @@ export const signup = async (req, res) => {
 
     await user.save();
 
-    generateTokenAndSetCookie(res, user._id);
+    // Returns the JWT so a frontend proxy (BFF) can set its own first-party cookie.
+    // The cookie set here is harmless for direct API use and ignored by the proxy.
+    const token = generateTokenAndSetCookie(res, user._id);
 
     res.status(201).json({
       success: true,
       message: "User created successfully",
+      token,
       user: {
         ...user._doc,
         password: undefined,
@@ -59,13 +62,14 @@ export const login = async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid credentials" });
     }
 
-    generateTokenAndSetCookie(res, user._id);
+    const token = generateTokenAndSetCookie(res, user._id);
     user.lastLogin = new Date();
     await user.save();
 
     res.status(200).json({
       success: true,
       message: "Logged in successfully",
+      token, // returned so the frontend proxy (BFF) can set a first-party cookie
       user: {
         ...user._doc,
         password: undefined,
@@ -79,7 +83,12 @@ export const login = async (req, res) => {
 
 // --------------------------- Logout ---------------------------
 export const logout = async (req, res) => {
-  res.clearCookie("token");
+  // ⚠️ clearCookie only removes the cookie if the options match how it was set
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  });
   res.status(200).json({ success: true, message: "Logged out successfully" });
 };
 

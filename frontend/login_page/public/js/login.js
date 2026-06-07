@@ -5,14 +5,14 @@ document.getElementById('loginForm').addEventListener('submit', async function (
   
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
-    const apiBaseUrl = window.APP_CONFIG?.BACKEND_URL || 'http://localhost:5000';
-  
+
     try {
-      const response = await fetch(`${apiBaseUrl}/api/auth/login`, {
+      // Same-origin call to the frontend auth proxy, which sets a first-party cookie.
+      const response = await fetch('/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
-        credentials: 'include' // ✅ Important to send cookies
+        credentials: 'same-origin' // ✅ store the first-party session cookie
       });
   
       const data = await response.json();

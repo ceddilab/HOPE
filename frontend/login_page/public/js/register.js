@@ -6,14 +6,14 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
-    const apiBaseUrl = window.APP_CONFIG?.BACKEND_URL || 'http://localhost:5000';
-  
+
     try {
-      const response = await fetch(`${apiBaseUrl}/api/auth/signup`, {
+      // Same-origin call to the frontend auth proxy, which sets a first-party cookie.
+      const response = await fetch('/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
-        credentials: 'include'
+        credentials: 'same-origin'
       });
   
       const data = await response.json();
@@ -27,7 +27,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
           showConfirmButton: false
         });
         setTimeout(() => {
-          window.location.href = "/login";
+          window.location.href = "/guest"; // ✅ already logged in (cookie set by proxy)
         }, 2000);
       } else {
         Swal.fire({

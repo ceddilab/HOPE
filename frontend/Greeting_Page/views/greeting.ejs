@@ -17,7 +17,11 @@
       <p>Humanitarian Operations for People in Emergencies</p>
 
       <div class="button-container">
-        <a href="/login" class="btn">Login</a>
+        <% if (!user) { %>
+          <a href="/login" class="btn">Login</a>
+        <% } else { %>
+          <a href="/logout" class="btn">Logout</a>
+        <% } %>
         <a href="/guest" class="btn-outline">Continue as Guest</a>
       </div>
     </div>

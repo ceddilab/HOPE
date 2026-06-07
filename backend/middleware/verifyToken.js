@@ -15,7 +15,10 @@ export const verifyToken = (req, res, next) => {
     req.userId = decoded.userId;  // ✅ Attach user ID to request
     next(); // ✅ Pass control to the next middleware or controller
   } catch (error) {
-    console.log("Error in verifyToken ", error);
-    return res.status(500).json({ success: false, message: "Server error" });
+    // 🔐 An invalid/expired/tampered token is a client auth problem, not a server error
+    if (error.name === "TokenExpiredError")
+      return res.status(401).json({ success: false, message: "Unauthorized - session expired" });
+
+    return res.status(401).json({ success: false, message: "Unauthorized - invalid token" });
   }
 };

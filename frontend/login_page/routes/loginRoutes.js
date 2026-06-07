@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const loginController = require('../controller/loginController');
 
-// ✅ CORRECT WAY:
-router.get('/login', loginController.showLoginPage);   // get = show login form
-router.post('/login', loginController.loginUser);      // post = process login form
+// GET shows the login form. The POST is handled by the backend API
+// (/api/auth/login) via browser JS, not by this Express frontend.
+router.get('/login', loginController.showLoginPage);
 
 module.exports = router;

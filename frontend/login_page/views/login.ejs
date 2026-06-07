@@ -17,7 +17,11 @@
       <div class="brand">H.O.P.E</div>
       <div class="nav-links">
         <a href="/home">Home</a>
-        <a href="/register">Register</a>
+        <% if (!user) { %>
+          <a href="/register">Register</a>
+        <% } else { %>
+          <a href="/logout">Logout</a>
+        <% } %>
       </div>
     </div>
   </nav>

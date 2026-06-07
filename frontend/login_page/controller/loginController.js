@@ -1,15 +1,6 @@
+// The login form is submitted by browser JS (login.js) directly to the backend
+// (/api/auth/login), which issues the httpOnly JWT session cookie. This controller
+// only needs to render the login page; there is no server-side form handler here.
 exports.showLoginPage = (req, res) => {
   res.render('login');
-};
-
-exports.loginUser = (req, res) => {
-  const { email, password } = req.body;
-
-  // Dummy check for now
-  if (email === 'test@example.com' && password === '123456') {
-    req.session.user = { email };
-    res.redirect('/dashboard');
-  } else {
-    res.redirect('/login');
-  }
 };
