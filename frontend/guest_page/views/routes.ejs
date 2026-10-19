@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nearest Route - D.D.C.A</title>
-  <link rel="stylesheet" href="/css/guest.css" />
+  <link rel="stylesheet" href="/css/routes.css" />
 </head>
 <body>
 
@@ -30,10 +30,26 @@
     </div>
   </header>
 
-  <section class="main-content" style="padding: 2rem; text-align: center;">
+  <section class="scroll-section visible">
     <div class="content-box">
-      <h2>🧭 Coming Soon</h2>
-      <p>Routing system with real-time geolocation will be displayed here.</p>
+      <h2>How It Works</h2>
+      <p>
+        Allow location access, then we compare your position against known depot
+        points and surface the closest ones with driving directions.
+      </p>
+      <ul>
+        <li>Uses your live GPS position</li>
+        <li>Ranks depots by straight-line distance</li>
+        <li>Opens Google Maps for car directions</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="scroll-section visible">
+    <div class="content-box">
+      <h2>Your Location Map</h2>
+      <p id="status-text">Waiting for map setup.</p>
+      <div id="map"></div>
     </div>
   </section>
 
