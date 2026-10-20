@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const statusText = document.getElementById("status-text");
   const nearestList = document.getElementById("nearest-list");
   const findBtn = document.getElementById("find-nearest");
+  const fileInput = document.getElementById("file-upload");
   const map = L.map("map").setView([36.7783, -119.4179], 6);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -155,6 +156,54 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+  function useDepots(points, sourceLabel) {
+    depots = points.filter((p) => p.latitude && p.longitude);
+    if (!depots.length) {
+      setStatus("No valid latitude/longitude points found.");
+      return;
+    }
+    plotDepots();
+    nearestList.innerHTML = "";
+    if (routeLine) {
+      map.removeLayer(routeLine);
+      routeLine = null;
+    }
+    setStatus(`Loaded ${depots.length} depots from ${sourceLabel}.`);
+    if (userLatLng) findNearest();
+  }
+
+  fileInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const ext = file.name.split(".").pop().toLowerCase();
+
+    if (ext === "json") {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const data = JSON.parse(event.target.result);
+          const list = Array.isArray(data) ? data : data.depots || data.points || [];
+          useDepots(list, file.name);
+        } catch (err) {
+          setStatus("Invalid JSON file.");
+        }
+      };
+      reader.readAsText(file);
+    } else if (ext === "csv") {
+      Papa.parse(file, {
+        header: true,
+        dynamicTyping: true,
+        complete: (result) => {
+          useDepots(result.data, file.name);
+        },
+        error: () => setStatus("Could not parse CSV file."),
+      });
+    } else {
+      setStatus("Please upload a .json or .csv file.");
+    }
+  });
+
   findBtn.addEventListener("click", findNearest);
 
   fetch("/data/default-depots.json")
@@ -163,8 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return res.json();
     })
     .then((data) => {
-      depots = data.filter((p) => p.latitude && p.longitude);
-      plotDepots();
+      useDepots(data, "defaults");
       locateUser();
     })
     .catch(() => {
