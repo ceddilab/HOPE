@@ -147,11 +147,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         map.setView([userLatLng.latitude, userLatLng.longitude], 10);
         findBtn.disabled = false;
-        setStatus(`Location found. Loaded ${depots.length} default depots.`);
+        setStatus(`Location ready. ${depots.length} depots loaded.`);
         findNearest();
       },
       () => {
-        setStatus("Location permission denied. Enable it to find nearby depots.");
+        findBtn.disabled = true;
+        setStatus("Location blocked. Allow location access, then try again.");
       }
     );
   }
