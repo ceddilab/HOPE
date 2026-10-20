@@ -1,0 +1,12 @@
+[
+  { "name": "Napa Supply Depot", "latitude": 38.2975, "longitude": -122.2869 },
+  { "name": "Sacramento Central Depot", "latitude": 38.5816, "longitude": -121.4944 },
+  { "name": "Richmond Logistics Hub", "latitude": 37.9358, "longitude": -122.3478 },
+  { "name": "Martinez Staging Depot", "latitude": 38.0194, "longitude": -122.1341 },
+  { "name": "Oakland Response Depot", "latitude": 37.8044, "longitude": -122.2712 },
+  { "name": "San Jose South Depot", "latitude": 37.3382, "longitude": -121.8863 },
+  { "name": "Fresno Valley Depot", "latitude": 36.7378, "longitude": -119.7871 },
+  { "name": "Bakersfield Depot", "latitude": 35.3733, "longitude": -119.0187 },
+  { "name": "Los Angeles Metro Depot", "latitude": 34.0522, "longitude": -118.2437 },
+  { "name": "San Diego Coastal Depot", "latitude": 32.7157, "longitude": -117.1611 }
+]

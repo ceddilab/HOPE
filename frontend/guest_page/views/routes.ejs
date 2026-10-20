@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nearest Route - D.D.C.A</title>
-  <link rel="stylesheet" href="/css/guest.css" />
+  <link rel="stylesheet" href="/css/routes.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
@@ -26,14 +27,35 @@
   <header class="hero">
     <div class="hero-content">
       <h1>Nearest Route</h1>
-      <p>Find the closest depot from your current location in real time.</p>
+      <p>Pick a depot set, share your location, and open driving directions to the closest one.</p>
     </div>
   </header>
 
-  <section class="main-content" style="padding: 2rem; text-align: center;">
+  <section class="scroll-section visible">
     <div class="content-box">
-      <h2>🧭 Coming Soon</h2>
-      <p>Routing system with real-time geolocation will be displayed here.</p>
+      <h2>How It Works</h2>
+      <p>
+        Default California depots load automatically. You can also upload your own
+        .json or .csv with latitude and longitude columns.
+      </p>
+      <ul>
+        <li>Uses your live GPS position</li>
+        <li>Ranks the top 5 depots by distance</li>
+        <li>Opens Google Maps for car directions</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="scroll-section visible">
+    <div class="content-box">
+      <h2>Map and Closest Depots</h2>
+      <div class="route-controls">
+        <input type="file" id="file-upload" accept=".json, .csv" />
+        <button type="button" id="find-nearest" disabled>Find Nearest</button>
+      </div>
+      <p id="status-text">Loading map...</p>
+      <div id="map"></div>
+      <ul id="nearest-list"></ul>
     </div>
   </section>
 
@@ -41,5 +63,8 @@
     <p>© 2025 D.D.C.A All rights reserved.</p>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+  <script src="/js/routes.js"></script>
 </body>
 </html>
