@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ECHO - Area Context - D.D.C.A</title>
   <link rel="stylesheet" href="/css/area-info.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
@@ -34,8 +35,8 @@
     <div class="content-box">
       <h2>How It Works</h2>
       <p>
-        Load area hazard points, click one for context, then jump to routing when
-        you need a depot.
+        Default California hazard points load automatically. Click one for more
+        context once details are wired up.
       </p>
       <ul>
         <li>Uses your live GPS position</li>
@@ -48,7 +49,7 @@
   <section class="scroll-section visible">
     <div class="content-box">
       <h2>Area Map and Guidance</h2>
-      <p id="status-text">Map setup coming next.</p>
+      <p id="status-text">Loading map...</p>
       <div id="map"></div>
     </div>
   </section>
@@ -57,5 +58,7 @@
     <p>© 2025 D.D.C.A All rights reserved.</p>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/js/area-info.js"></script>
 </body>
 </html>
