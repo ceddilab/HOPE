@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Area Information - D.D.C.A</title>
-  <link rel="stylesheet" href="/css/guest.css" />
+  <title>ECHO - Area Context - D.D.C.A</title>
+  <link rel="stylesheet" href="/css/area-info.css" />
 </head>
 <body>
 
@@ -25,15 +25,31 @@
 
   <header class="hero">
     <div class="hero-content">
-      <h1>Area Information</h1>
-      <p>Explore data for optimised disaster planning and resource allocation.</p>
+      <h1>ECHO</h1>
+      <p>See hazards near you, open area details, and get quick response guidance.</p>
     </div>
   </header>
 
-  <section class="main-content" style="padding: 2rem; text-align: center;">
+  <section class="scroll-section visible">
     <div class="content-box">
-      <h2>🗺️ Work In Progress</h2>
-      <p>This section will show area-level insights, zones, or risk indicators.</p>
+      <h2>How It Works</h2>
+      <p>
+        Load area hazard points, click one for context, then jump to routing when
+        you need a depot.
+      </p>
+      <ul>
+        <li>Uses your live GPS position</li>
+        <li>Click a hazard for context and tips</li>
+        <li>Jump to nearest-route (NET) when you need a depot</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="scroll-section visible">
+    <div class="content-box">
+      <h2>Area Map and Guidance</h2>
+      <p id="status-text">Map setup coming next.</p>
+      <div id="map"></div>
     </div>
   </section>
 
