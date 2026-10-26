@@ -35,8 +35,8 @@
     <div class="content-box">
       <h2>How It Works</h2>
       <p>
-        Default California hazard points load automatically. Click one for more
-        context once details are wired up.
+        Default California hazard points load automatically. Upload your own
+        .json or .csv with latitude and longitude if you want a custom set.
       </p>
       <ul>
         <li>Uses your live GPS position</li>
@@ -49,8 +49,16 @@
   <section class="scroll-section visible">
     <div class="content-box">
       <h2>Area Map and Guidance</h2>
+      <div class="echo-controls">
+        <input type="file" id="file-upload" accept=".json, .csv" />
+      </div>
       <p id="status-text">Loading map...</p>
-      <div id="map"></div>
+      <div class="echo-layout">
+        <div id="map"></div>
+        <aside class="detail-panel" id="detail-panel">
+          <p class="placeholder">Click a hazard on the map to see details and response tips.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -59,6 +67,7 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
   <script src="/js/area-info.js"></script>
 </body>
 </html>
