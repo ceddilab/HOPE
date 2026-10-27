@@ -3,17 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Depot Location -D.D.C.A</title>
-
-  <!-- Custom CSS -->
+  <title>Depot Location - D.D.C.A</title>
   <link rel="stylesheet" href="/css/clustering.css" />
-
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
-  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-container">
       <div class="brand">D.D.C.A</div>
@@ -29,50 +24,64 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <header class="hero">
     <div class="hero-content">
-      <h1>📍 Depot Location Allocation</h1>
-      <p>Locate and analyze optimal depot placement based on your real-time position.</p>
+      <h1>SERA</h1>
+      <p>Recommend depot locations from demand or hazard points around your area.</p>
     </div>
   </header>
 
-  <!-- Intro Section -->
   <section class="scroll-section visible">
     <div class="content-box">
-      <h2>🔎 How It Works</h2>
+      <h2>How It Works</h2>
       <p>
-        Our smart clustering algorithm evaluates surrounding areas using location-based analysis and optimized geospatial clustering to determine the best depot sites.
+        Default California points load automatically. Set a cluster count, run
+        clustering, and SERA marks recommended depot centers on the map.
       </p>
       <ul>
-        <li>🧠 AI-powered clustering (DDCA, K-Means++)</li>
-        <li>📌 Accessibility and coverage score</li>
-        <li>🚚 Logistics and response distance optimization</li>
+        <li>Input points = demand / hazard locations</li>
+        <li>Output = recommended depot centers</li>
+        <li>Upload your own file anytime to replace the defaults</li>
       </ul>
     </div>
   </section>
 
-  <!-- Map Section -->
   <section class="scroll-section visible">
     <div class="content-box">
-      <h2>🗺️ Your Location Map</h2>
+      <h2>Your own data format</h2>
+      <p>
+        Use a <code>.json</code> array or <code>.csv</code> with headers.
+        Required fields: <code>latitude</code>, <code>longitude</code>.
+        Optional: <code>name</code>.
+      </p>
+      <pre class="format-example">{
+  { "name": "Flood Zone - Stockton", "latitude": 37.9577, "longitude": -121.2908 }
+]</pre>
+      <p>
+        CSV example header: <code>name,latitude,longitude</code>
+      </p>
+    </div>
+  </section>
+
+  <section class="scroll-section visible">
+    <div class="content-box">
+      <h2>Map and Clustering</h2>
       <input type="file" id="file-upload" accept=".json, .csv" />
       <div class="cluster-selection">
-        <label for="num-clusters">Number of Clusters:</label>
+        <label for="num-clusters">Number of Depots:</label>
         <input type="number" id="num-clusters" value="3" min="1" max="10" />
-        <button id="confirm-clusters">Confirm</button>
+        <button type="button" id="confirm-clusters">Confirm</button>
+        <button type="button" id="start-clustering" style="display: none;">Run Clustering</button>
       </div>
-      <button id="start-clustering" style="display: none;">Run Clustering</button>
+      <p id="status-text">Loading default points...</p>
       <div id="map"></div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 D.D.C.A All rights reserved.</p>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>

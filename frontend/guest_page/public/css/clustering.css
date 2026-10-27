@@ -206,4 +206,22 @@ body {
   button:hover {
     background-color: #cc5200;
   }
-  
+
+  #status-text {
+    margin-top: 1rem;
+    color: #ffd369;
+    min-height: 1.4em;
+  }
+
+  .format-example {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    color: #ffd369;
+    font-size: 0.9rem;
+  }
+
+  code {
+    color: #ffd369;
+  }
