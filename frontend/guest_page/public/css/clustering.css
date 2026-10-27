@@ -252,3 +252,27 @@ body {
   #recommended-list li strong {
     color: #fff;
   }
+
+  #recommended-list .depot-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.7rem;
+  }
+
+  #recommended-list a.depot-link {
+    background-color: #ff6b00;
+    color: white;
+    border: none;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  #recommended-list a.depot-link.secondary {
+    background: transparent;
+    border: 1px solid #ffd369;
+    color: #ffd369;
+  }

@@ -170,6 +170,16 @@ document.addEventListener("DOMContentLoaded", () => {
     setStatus(`Recommended ${clusterCenters.length} depot location(s).`);
   });
 
+  function handoffQuery(depot) {
+    const params = new URLSearchParams({
+      lat: String(depot.latitude),
+      lng: String(depot.longitude),
+      name: depot.name,
+      from: "sera",
+    });
+    return params.toString();
+  }
+
   function renderRecommendedList() {
     if (!recommendedBox || !recommendedList) return;
     recommendedList.innerHTML = "";
@@ -181,9 +191,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     recommendedDepots.forEach((depot, index) => {
       const li = document.createElement("li");
+      const q = handoffQuery(depot);
+
       li.innerHTML =
         `<strong>${index + 1}. ${depot.name}</strong>` +
-        `<div>${depot.latitude.toFixed(4)}, ${depot.longitude.toFixed(4)}</div>`;
+        `<div>${depot.latitude.toFixed(4)}, ${depot.longitude.toFixed(4)}</div>` +
+        `<div class="depot-actions">` +
+        `<a class="depot-link secondary" href="/area-info?${q}">Check hazards nearby</a>` +
+        `<a class="depot-link" href="/routes?${q}">Route with NET</a>` +
+        `</div>`;
       recommendedList.appendChild(li);
     });
 

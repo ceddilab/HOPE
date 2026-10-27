@@ -13,6 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let tipsByType = {};
   let hazardLayer = L.layerGroup().addTo(map);
   let userMarker = null;
+  let focusMarker = null;
+
+  const handoffParams = new URLSearchParams(window.location.search);
+  const handoff =
+    handoffParams.get("lat") && handoffParams.get("lng")
+      ? {
+          name: handoffParams.get("name") || "Selected depot",
+          latitude: Number(handoffParams.get("lat")),
+          longitude: Number(handoffParams.get("lng")),
+          type: "depot",
+          from: handoffParams.get("from") || "",
+        }
+      : null;
 
   const typeColors = {
     wildfire: "#e74c3c",
@@ -87,12 +100,26 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+  function netHandoffUrl(point) {
+    const params = new URLSearchParams({
+      lat: String(point.latitude),
+      lng: String(point.longitude),
+      name: point.name || "Selected depot",
+      from: "echo",
+    });
+    return `/routes?${params.toString()}`;
+  }
+
   function showDetails(hazard) {
-    const tips = tipBlock(hazard.type);
+    const tips = tipBlock(hazard.type === "depot" ? "general" : hazard.type);
     const dist =
       userLatLng != null
         ? `${distanceKm(userLatLng, hazard).toFixed(1)} km from you`
         : "Enable location to see distance";
+    const routeHref =
+      hazard.type === "depot" ? netHandoffUrl(hazard) : "/routes";
+    const routeLabel =
+      hazard.type === "depot" ? "Route to this depot" : "Find nearest depot";
 
     detailPanel.innerHTML = `
       <h3>${hazard.name}</h3>
@@ -100,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="meta">${dist}</div>
       ${hazard.notes ? `<p>${hazard.notes}</p>` : ""}
       <div class="actions">
-        <a class="action-link" href="/routes">Find nearest depot</a>
+        <a class="action-link" href="${routeHref}">${routeLabel}</a>
         <a class="action-link secondary" target="_blank" rel="noopener noreferrer"
            href="https://www.google.com/maps/search/?api=1&query=${hazard.latitude},${hazard.longitude}">
           Open in Maps
@@ -111,6 +138,22 @@ document.addEventListener("DOMContentLoaded", () => {
         ${tips.tips.map((t) => `<li>${t}</li>`).join("")}
       </ul>
     `;
+  }
+
+  function applyHandoffFocus() {
+    if (!handoff || Number.isNaN(handoff.latitude) || Number.isNaN(handoff.longitude)) {
+      return;
+    }
+
+    if (focusMarker) map.removeLayer(focusMarker);
+    focusMarker = L.marker([handoff.latitude, handoff.longitude])
+      .addTo(map)
+      .bindPopup(handoff.name)
+      .openPopup();
+
+    map.setView([handoff.latitude, handoff.longitude], 9);
+    showDetails(handoff);
+    setStatus(`Focused on ${handoff.name}. Hazards nearby are on the map.`);
   }
 
   function plotHazards() {
@@ -159,14 +202,23 @@ document.addEventListener("DOMContentLoaded", () => {
         if (userMarker) map.removeLayer(userMarker);
         userMarker = L.marker([userLatLng.latitude, userLatLng.longitude])
           .addTo(map)
-          .bindPopup("You are here")
-          .openPopup();
+          .bindPopup("You are here");
 
-        map.setView([userLatLng.latitude, userLatLng.longitude], 8);
-        setStatus(`Location ready. ${hazards.length} hazards loaded.`);
+        if (!handoff) {
+          userMarker.openPopup();
+          map.setView([userLatLng.latitude, userLatLng.longitude], 8);
+          setStatus(`Location ready. ${hazards.length} hazards loaded.`);
+        } else {
+          setStatus(`Focused on ${handoff.name}. Your location is also on the map.`);
+          showDetails(handoff);
+        }
       },
       () => {
-        setStatus("Location blocked. You can still click hazards on the map.");
+        setStatus(
+          handoff
+            ? `Focused on ${handoff.name}. Location blocked for distance.`
+            : "Location blocked. You can still click hazards on the map."
+        );
       }
     );
   }
@@ -216,6 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(([hazardData, tipData]) => {
       tipsByType = tipData || {};
       useHazards(hazardData, "defaults");
+      applyHandoffFocus();
       locateUser();
     })
     .catch(() => {

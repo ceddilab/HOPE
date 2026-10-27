@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const nearestList = document.getElementById("nearest-list");
   const findBtn = document.getElementById("find-nearest");
   const fileInput = document.getElementById("file-upload");
+  const depotSelect = document.getElementById("depot-select");
   const map = L.map("map").setView([36.7783, -119.4179], 6);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -14,6 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
   let depotLayer = L.layerGroup().addTo(map);
   let userMarker = null;
   let routeLine = null;
+  let selectedIndex = -1;
+
+  const handoffParams = new URLSearchParams(window.location.search);
+  const handoff =
+    handoffParams.get("lat") && handoffParams.get("lng")
+      ? {
+          name: handoffParams.get("name") || "Selected depot",
+          latitude: Number(handoffParams.get("lat")),
+          longitude: Number(handoffParams.get("lng")),
+        }
+      : null;
 
   function setStatus(message) {
     statusText.textContent = message;
@@ -23,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return (deg * Math.PI) / 180;
   }
 
-  // Haversine distance in km
   function distanceKm(a, b) {
     const R = 6371;
     const dLat = toRad(b.latitude - a.latitude);
@@ -43,6 +54,20 @@ document.addEventListener("DOMContentLoaded", () => {
       `&destination=${dest.latitude},${dest.longitude}` +
       "&travelmode=driving"
     );
+  }
+
+  function populateDepotSelect(preferredIndex = -1) {
+    depotSelect.innerHTML = '<option value="">Select a depot...</option>';
+    depots.forEach((depot, index) => {
+      const opt = document.createElement("option");
+      opt.value = String(index);
+      opt.textContent = depot.name || `Depot ${index + 1}`;
+      depotSelect.appendChild(opt);
+    });
+    if (preferredIndex >= 0 && preferredIndex < depots.length) {
+      depotSelect.value = String(preferredIndex);
+      selectedIndex = preferredIndex;
+    }
   }
 
   function plotDepots() {
@@ -70,17 +95,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     return depots
-      .map((depot) => ({
+      .map((depot, index) => ({
         ...depot,
+        index,
         distanceKm: distanceKm(userLatLng, depot),
       }))
       .sort((a, b) => a.distanceKm - b.distanceKm)
       .slice(0, limit);
   }
 
+  function drawRouteTo(depot) {
+    if (!userLatLng || !depot) return;
+
+    if (routeLine) map.removeLayer(routeLine);
+    routeLine = L.polyline(
+      [
+        [userLatLng.latitude, userLatLng.longitude],
+        [depot.latitude, depot.longitude],
+      ],
+      { color: "#ff6b00", weight: 3 }
+    ).addTo(map);
+
+    map.fitBounds(routeLine.getBounds(), { padding: [40, 40] });
+  }
+
   function renderNearest(ranked) {
     nearestList.innerHTML = "";
-
     if (!ranked.length) return;
 
     ranked.forEach((depot, index) => {
@@ -103,23 +143,73 @@ document.addEventListener("DOMContentLoaded", () => {
       nearestList.appendChild(li);
     });
 
-    const closest = ranked[0];
-    if (routeLine) map.removeLayer(routeLine);
-    routeLine = L.polyline(
-      [
-        [userLatLng.latitude, userLatLng.longitude],
-        [closest.latitude, closest.longitude],
-      ],
-      { color: "#ff6b00", weight: 3 }
-    ).addTo(map);
+    drawRouteTo(ranked[0]);
+    setStatus(`Closest depot: ${ranked[0].name} (${ranked[0].distanceKm.toFixed(1)} km)`);
+  }
 
-    map.fitBounds(routeLine.getBounds(), { padding: [40, 40] });
-    setStatus(`Closest depot: ${closest.name} (${closest.distanceKm.toFixed(1)} km)`);
+  function showSelectedDepot() {
+    if (selectedIndex < 0 || selectedIndex >= depots.length) return;
+    const depot = depots[selectedIndex];
+
+    nearestList.innerHTML = "";
+    const li = document.createElement("li");
+    const meta = document.createElement("div");
+    meta.className = "depot-meta";
+
+    const distText = userLatLng
+      ? `${distanceKm(userLatLng, depot).toFixed(1)} km away`
+      : "Allow location to see distance";
+
+    meta.innerHTML =
+      `<strong>${depot.name || "Depot"}</strong>` +
+      `<div>${distText}</div>`;
+
+    li.appendChild(meta);
+
+    if (userLatLng) {
+      const link = document.createElement("a");
+      link.className = "maps-link";
+      link.href = mapsDirUrl(userLatLng, depot);
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Drive here";
+      li.appendChild(link);
+      drawRouteTo(depot);
+      setStatus(`Routing to ${depot.name}.`);
+    } else {
+      setStatus(`Selected ${depot.name}. Allow location for directions.`);
+      map.setView([depot.latitude, depot.longitude], 10);
+    }
+
+    nearestList.appendChild(li);
   }
 
   function findNearest() {
     const ranked = rankNearest(5);
+    if (!ranked.length) return;
+    selectedIndex = ranked[0].index;
+    depotSelect.value = String(selectedIndex);
     renderNearest(ranked);
+  }
+
+  function mergeHandoffDepot() {
+    if (!handoff || Number.isNaN(handoff.latitude) || Number.isNaN(handoff.longitude)) {
+      return -1;
+    }
+
+    const existing = depots.findIndex(
+      (d) =>
+        Math.abs(d.latitude - handoff.latitude) < 1e-6 &&
+        Math.abs(d.longitude - handoff.longitude) < 1e-6
+    );
+
+    if (existing >= 0) {
+      depots[existing].name = handoff.name || depots[existing].name;
+      return existing;
+    }
+
+    depots.unshift(handoff);
+    return 0;
   }
 
   function locateUser() {
@@ -136,9 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
           longitude: position.coords.longitude,
         };
 
-        if (userMarker) {
-          map.removeLayer(userMarker);
-        }
+        if (userMarker) map.removeLayer(userMarker);
 
         userMarker = L.marker([userLatLng.latitude, userLatLng.longitude])
           .addTo(map)
@@ -147,12 +235,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         map.setView([userLatLng.latitude, userLatLng.longitude], 10);
         findBtn.disabled = false;
-        setStatus(`Location ready. ${depots.length} depots loaded.`);
-        findNearest();
+
+        if (selectedIndex >= 0) {
+          showSelectedDepot();
+        } else {
+          setStatus(`Location ready. ${depots.length} depots loaded.`);
+          findNearest();
+        }
       },
       () => {
         findBtn.disabled = true;
         setStatus("Location blocked. Allow location access, then try again.");
+        if (selectedIndex >= 0) showSelectedDepot();
       }
     );
   }
@@ -163,15 +257,36 @@ document.addEventListener("DOMContentLoaded", () => {
       setStatus("No valid latitude/longitude points found.");
       return;
     }
+
+    const preferred = mergeHandoffDepot();
     plotDepots();
+    populateDepotSelect(preferred);
     nearestList.innerHTML = "";
     if (routeLine) {
       map.removeLayer(routeLine);
       routeLine = null;
     }
-    setStatus(`Loaded ${depots.length} depots from ${sourceLabel}.`);
-    if (userLatLng) findNearest();
+
+    if (preferred >= 0) {
+      selectedIndex = preferred;
+      setStatus(`Loaded handoff depot: ${depots[preferred].name}.`);
+      showSelectedDepot();
+    } else {
+      selectedIndex = -1;
+      setStatus(`Loaded ${depots.length} depots from ${sourceLabel}.`);
+      if (userLatLng) findNearest();
+    }
   }
+
+  depotSelect.addEventListener("change", () => {
+    const value = depotSelect.value;
+    if (value === "") {
+      selectedIndex = -1;
+      return;
+    }
+    selectedIndex = Number(value);
+    showSelectedDepot();
+  });
 
   fileInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
@@ -195,9 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Papa.parse(file, {
         header: true,
         dynamicTyping: true,
-        complete: (result) => {
-          useDepots(result.data, file.name);
-        },
+        complete: (result) => useDepots(result.data, file.name),
         error: () => setStatus("Could not parse CSV file."),
       });
     } else {
