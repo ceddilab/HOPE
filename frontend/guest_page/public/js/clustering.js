@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmBtn = document.getElementById("confirm-clusters");
   const startBtn = document.getElementById("start-clustering");
   const statusText = document.getElementById("status-text");
+  const recommendedBox = document.getElementById("recommended-depots");
+  const recommendedList = document.getElementById("recommended-list");
+  let recommendedDepots = [];
 
   const map = L.map("map").setView([36.7783, -119.4179], 6);
   const bounds = L.latLngBounds();
@@ -144,6 +147,13 @@ document.addEventListener("DOMContentLoaded", () => {
       c.lng / c.count,
     ]);
 
+    recommendedDepots = clusterCenters.map((center, index) => ({
+      name: `Recommended Depot ${index + 1}`,
+      latitude: center[0],
+      longitude: center[1],
+    }));
+    renderRecommendedList();
+
     coordinates.forEach((coord) => {
       const key = `${coord.latitude},${coord.longitude}`;
       const clusterIdx = assignments[key];
@@ -159,6 +169,26 @@ document.addEventListener("DOMContentLoaded", () => {
     renderMap(assignments);
     setStatus(`Recommended ${clusterCenters.length} depot location(s).`);
   });
+
+  function renderRecommendedList() {
+    if (!recommendedBox || !recommendedList) return;
+    recommendedList.innerHTML = "";
+
+    if (!recommendedDepots.length) {
+      recommendedBox.hidden = true;
+      return;
+    }
+
+    recommendedDepots.forEach((depot, index) => {
+      const li = document.createElement("li");
+      li.innerHTML =
+        `<strong>${index + 1}. ${depot.name}</strong>` +
+        `<div>${depot.latitude.toFixed(4)}, ${depot.longitude.toFixed(4)}</div>`;
+      recommendedList.appendChild(li);
+    });
+
+    recommendedBox.hidden = false;
+  }
 
   function renderMap(assignments) {
     map.eachLayer((layer) => {

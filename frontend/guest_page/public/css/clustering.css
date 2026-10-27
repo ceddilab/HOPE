@@ -225,3 +225,30 @@ body {
   code {
     color: #ffd369;
   }
+
+  .recommended-depots {
+    margin-top: 1.5rem;
+  }
+
+  .recommended-depots h3 {
+    color: #ffd369;
+    margin-bottom: 0.75rem;
+  }
+
+  #recommended-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #recommended-list li {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.75rem;
+    color: #ddd;
+  }
+
+  #recommended-list li strong {
+    color: #fff;
+  }
