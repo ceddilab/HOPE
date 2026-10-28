@@ -206,4 +206,73 @@ body {
   button:hover {
     background-color: #cc5200;
   }
-  
+
+  #status-text {
+    margin-top: 1rem;
+    color: #ffd369;
+    min-height: 1.4em;
+  }
+
+  .format-example {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    color: #ffd369;
+    font-size: 0.9rem;
+  }
+
+  code {
+    color: #ffd369;
+  }
+
+  .recommended-depots {
+    margin-top: 1.5rem;
+  }
+
+  .recommended-depots h3 {
+    color: #ffd369;
+    margin-bottom: 0.75rem;
+  }
+
+  #recommended-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #recommended-list li {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    margin-bottom: 0.75rem;
+    color: #ddd;
+  }
+
+  #recommended-list li strong {
+    color: #fff;
+  }
+
+  #recommended-list .depot-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.7rem;
+  }
+
+  #recommended-list a.depot-link {
+    background-color: #ff6b00;
+    color: white;
+    border: none;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  #recommended-list a.depot-link.secondary {
+    background: transparent;
+    border: 1px solid #ffd369;
+    color: #ffd369;
+  }

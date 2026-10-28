@@ -1,0 +1,22 @@
+[
+  { "name": "Wildfire Zone - Napa", "type": "wildfire", "latitude": 38.2975, "longitude": -122.2869 },
+  { "name": "Earthquake Risk - San Andreas", "type": "earthquake", "latitude": 36.5761, "longitude": -121.2511 },
+  { "name": "Flood Zone - Sacramento", "type": "flood", "latitude": 38.5816, "longitude": -121.4944 },
+  { "name": "Mudslide Area - Malibu", "type": "landslide", "latitude": 34.0259, "longitude": -118.7798 },
+  { "name": "Industrial Spill - Richmond", "type": "chemical", "latitude": 37.9358, "longitude": -122.3478 },
+  { "name": "Radiation Leak - San Onofre", "type": "radiation", "latitude": 33.3687, "longitude": -117.5554 },
+  { "name": "Tsunami Risk - Crescent City", "type": "tsunami", "latitude": 41.7558, "longitude": -124.2017 },
+  { "name": "Chemical Zone - Martinez", "type": "chemical", "latitude": 38.0194, "longitude": -122.1341 },
+  { "name": "Heatwave Alert - Palm Springs", "type": "heat", "latitude": 33.8303, "longitude": -116.5453 },
+  { "name": "Drought Zone - Fresno", "type": "drought", "latitude": 36.7378, "longitude": -119.7871 },
+  { "name": "Sinkhole Area - Fontana", "type": "sinkhole", "latitude": 34.0922, "longitude": -117.435 },
+  { "name": "Earthquake Alert - Ridgecrest", "type": "earthquake", "latitude": 35.6225, "longitude": -117.6709 },
+  { "name": "Flood Zone - Stockton", "type": "flood", "latitude": 37.9577, "longitude": -121.2908 },
+  { "name": "Industrial Fire - Carson", "type": "industrial", "latitude": 33.8314, "longitude": -118.282 },
+  { "name": "Radiation Risk - Livermore Lab", "type": "radiation", "latitude": 37.6819, "longitude": -121.768 },
+  { "name": "Wildfire Alert - Redding", "type": "wildfire", "latitude": 40.5865, "longitude": -122.3917 },
+  { "name": "Chemical Leak - Torrance", "type": "chemical", "latitude": 33.8358, "longitude": -118.3406 },
+  { "name": "Tsunami Watch - Eureka", "type": "tsunami", "latitude": 40.8021, "longitude": -124.1637 },
+  { "name": "Heat Stress - Bakersfield", "type": "heat", "latitude": 35.3733, "longitude": -119.0187 },
+  { "name": "Landslide Zone - Big Sur", "type": "landslide", "latitude": 36.2704, "longitude": -121.8081 }
+]

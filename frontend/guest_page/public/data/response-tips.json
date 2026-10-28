@@ -1,0 +1,110 @@
+{
+  "general": {
+    "title": "General emergency tips",
+    "tips": [
+      "Call emergency services if anyone is hurt or in immediate danger.",
+      "Move to a safer location if you can do so without taking new risks.",
+      "Keep phone charged and share your location with a trusted contact.",
+      "Follow official alerts from local emergency management."
+    ]
+  },
+  "wildfire": {
+    "title": "Wildfire guidance",
+    "tips": [
+      "If told to evacuate, leave early and take a go-bag.",
+      "Avoid smoke: close windows and use an N95 if available.",
+      "Do not drive through heavy smoke or active fire areas.",
+      "Check air quality before returning outdoors."
+    ]
+  },
+  "earthquake": {
+    "title": "Earthquake guidance",
+    "tips": [
+      "Drop, cover, and hold on until shaking stops.",
+      "Stay clear of windows, shelves, and falling objects.",
+      "Aftershock risk remains: check for injuries and hazards before moving.",
+      "If outdoors, move away from buildings and power lines."
+    ]
+  },
+  "flood": {
+    "title": "Flood guidance",
+    "tips": [
+      "Turn around, don't drown: avoid walking or driving through floodwater.",
+      "Move to higher ground if water is rising nearby.",
+      "Stay off bridges over fast-moving water.",
+      "Assume floodwater may be contaminated."
+    ]
+  },
+  "landslide": {
+    "title": "Landslide / mudslide guidance",
+    "tips": [
+      "Leave the area if you hear rumbling or see ground cracking.",
+      "Avoid hillside roads during heavy rain when possible.",
+      "Watch for tilted trees, poles, or sudden water flow changes.",
+      "Do not dig into or climb unstable slopes."
+    ]
+  },
+  "chemical": {
+    "title": "Chemical hazard guidance",
+    "tips": [
+      "Move upwind and away from the release if it is safe to do so.",
+      "Shelter indoors: close windows, vents, and HVAC if advised.",
+      "Avoid contact with spilled material and contaminated clothing.",
+      "Seek medical help for breathing trouble, burning eyes, or dizziness."
+    ]
+  },
+  "industrial": {
+    "title": "Industrial incident guidance",
+    "tips": [
+      "Leave the immediate area and keep others back.",
+      "Cover nose and mouth if smoke or fumes are present.",
+      "Follow local shelter-in-place or evacuate orders.",
+      "Report strong chemical smells or visible plumes to authorities."
+    ]
+  },
+  "radiation": {
+    "title": "Radiation hazard guidance",
+    "tips": [
+      "Get inside, stay inside, and stay tuned to official instructions.",
+      "Close windows and turn off outdoor air intake if possible.",
+      "Do not self-evacuate through a known plume path unless told to.",
+      "Wait for official guidance on potassium iodide or decontamination."
+    ]
+  },
+  "tsunami": {
+    "title": "Tsunami guidance",
+    "tips": [
+      "If you feel a strong coastal quake or get a warning, move inland/uphill immediately.",
+      "Do not wait to see the wave.",
+      "Stay away from the beach and harbor until officials reopen the area.",
+      "A tsunami may arrive as multiple waves over hours."
+    ]
+  },
+  "heat": {
+    "title": "Extreme heat guidance",
+    "tips": [
+      "Drink water regularly and limit outdoor activity in peak heat.",
+      "Use AC or cooling centers if available.",
+      "Watch for heat exhaustion: heavy sweating, weakness, nausea.",
+      "Never leave people or pets in a parked car."
+    ]
+  },
+  "drought": {
+    "title": "Drought-related guidance",
+    "tips": [
+      "Conserve water and follow local water restrictions.",
+      "Watch for dry vegetation and higher wildfire risk.",
+      "Stay hydrated in hot, dry conditions.",
+      "Check air quality during dust events."
+    ]
+  },
+  "sinkhole": {
+    "title": "Sinkhole guidance",
+    "tips": [
+      "Keep clear of cracked pavement, fences, or sudden ground dips.",
+      "Do not approach or enter a sinkhole.",
+      "Report utility smells or outages near the site.",
+      "Evacuate nearby structures if officials advise."
+    ]
+  }
+}

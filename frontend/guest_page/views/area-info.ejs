@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Area Information - D.D.C.A</title>
-  <link rel="stylesheet" href="/css/guest.css" />
+  <title>ECHO - Area Context - D.D.C.A</title>
+  <link rel="stylesheet" href="/css/area-info.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
@@ -25,15 +26,39 @@
 
   <header class="hero">
     <div class="hero-content">
-      <h1>Area Information</h1>
-      <p>Explore data for optimised disaster planning and resource allocation.</p>
+      <h1>ECHO</h1>
+      <p>See hazards near you, open area details, and get quick response guidance.</p>
     </div>
   </header>
 
-  <section class="main-content" style="padding: 2rem; text-align: center;">
+  <section class="scroll-section visible">
     <div class="content-box">
-      <h2>🗺️ Work In Progress</h2>
-      <p>This section will show area-level insights, zones, or risk indicators.</p>
+      <h2>How It Works</h2>
+      <p>
+        Default California hazard points load automatically. Upload your own
+        .json or .csv with latitude and longitude if you want a custom set.
+      </p>
+      <ul>
+        <li>Uses your live GPS position</li>
+        <li>Click a hazard for context and tips</li>
+        <li>Jump to nearest-route (NET) when you need a depot</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="scroll-section visible">
+    <div class="content-box">
+      <h2>Area Map and Guidance</h2>
+      <div class="echo-controls">
+        <input type="file" id="file-upload" accept=".json, .csv" />
+      </div>
+      <p id="status-text">Loading map...</p>
+      <div class="echo-layout">
+        <div id="map"></div>
+        <aside class="detail-panel" id="detail-panel">
+          <p class="placeholder">Click a hazard on the map to see details and response tips.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
@@ -41,5 +66,8 @@
     <p>© 2025 D.D.C.A All rights reserved.</p>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+  <script src="/js/area-info.js"></script>
 </body>
 </html>

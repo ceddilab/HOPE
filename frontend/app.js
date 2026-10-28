@@ -106,7 +106,7 @@ app.get('/area-info', (req, res) => {
 });
 
 app.get('/first-aid', (req, res) => {
-  res.render('first-aid');  // Ensure the file exists in the views folder
+  res.redirect('/area-info');
 });
 
 
